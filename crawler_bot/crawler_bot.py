@@ -101,7 +101,6 @@ class CryptoCog(commands.Cog):
                     embed.set_thumbnail(url=logo)
                     embeds.append(embed)
 
-                # Enviar los embeds en grupos de 10
                 try:
                     for i in range(0, len(embeds), 10):
                         await canal.send(embeds=embeds[i:i + 10])
