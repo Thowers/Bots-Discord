@@ -42,14 +42,6 @@ async def on_ready():
             except discord.Forbidden:
                 print(f"Permissão negada para enviar mensagens em {canal.name} no servidor {guild.name}. No se porque esta en portugues")
 
-    for guild in bot.guilds:
-        canal = discord.utils.get(guild.text_channels, name="cryptos")
-        if canal and canal.permissions_for(guild.me).send_messages:
-            try:
-                await canal.purge(limit=None)
-            except discord.Forbidden:
-                print(f"Permissão negada para enviar mensagens em {canal.name} no servidor {guild.name}. No se porque esta en portugues")
-
 def run_bot():
     bot.run(TOKEN)
 
