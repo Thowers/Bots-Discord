@@ -10,7 +10,7 @@ class CryptoCog(commands.Cog):
         }
 
     @commands.command(name='crypto')
-    async def crypto(self, ctx, top: int = 10):
+    async def crypto(self, ctx, top: int = 20):
         response = requests.get(self.url, headers=self.headers)
         if response.status_code != 200:
             return await ctx.send("Error al acceder a CoinMarketCap.")            
