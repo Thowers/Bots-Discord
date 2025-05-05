@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from crawler_api.routes.crawler_routes import router as crawler_router
 
