@@ -14,4 +14,5 @@ async def root():
 
 def run_app():
     import uvicorn
-    uvicorn.run("crawler_api.crawler:app", host="127.0.0.1", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("crawler_api.crawler:app", host="0.0.0.0", port=port)
