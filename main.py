@@ -49,4 +49,3 @@ if __name__ == "__main__":
     threading.Thread(target=run_app, daemon=True).start()
     run_bot()
 
-    #prueba trase github
