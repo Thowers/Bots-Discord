@@ -25,6 +25,7 @@ class CustomBot(commands.Bot):
     async def setup_hook(self):
         await self.load_extension("crawler_bot.crawler_bot")
         await self.load_extension("google_bot.search_bot")
+        await self.load_extension("instagram_bot.instagram_bot")
         #print("✅ Cogs cargados.")
 
 bot = CustomBot()

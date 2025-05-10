@@ -14,8 +14,8 @@ class CryptoCog(commands.Cog):
         }
         self.precios_anteriores = {}
         self.historico = {}
-        self.botones_mensaje_id = {}  # Guarda el ID del mensaje de botones por canal
-        self.embeds_mensaje_id = {}   # Guarda el ID del mensaje de embeds por canal
+        self.botones_mensaje_id = {} 
+        self.embeds_mensaje_id = {} 
         self.actualizacion.start()
 
     def crypto_data(self, top=100):
@@ -74,8 +74,8 @@ class CryptoCog(commands.Cog):
                     # Guardar tupla (precio, hora)
                     hora_actual = datetime.datetime.now().strftime("%H:%M:%S")
                     self.historico[nombre].append((precio, hora_actual))
-                    if len(self.historico[nombre]) > 10:
-                        self.historico[nombre] = self.historico[nombre][-10:]
+                    if len(self.historico[nombre]) > 20:
+                        self.historico[nombre] = self.historico[nombre][-20:]
 
                     precio_anterior = self.precios_anteriores.get(nombre)
                     self.precios_anteriores[nombre] = precio
@@ -141,13 +141,11 @@ class CryptoCog(commands.Cog):
                             except discord.Forbidden:
                                 await interaction.response.send_message("No pude enviarte mensaje privado. ¿Tienes los DMs abiertos?", ephemeral=True)
 
-                # Enviar los botones solo si no existe el mensaje
                 if canal.id not in self.botones_mensaje_id:
                     view = View(nombres, self)
                     mensaje_botones = await canal.send("Selecciona una moneda para ver su histórico:", view=view)
                     self.botones_mensaje_id[canal.id] = mensaje_botones.id
 
-                # Editar o enviar los mensajes de embeds en bloques de 10
                 try:
                     if canal.id in self.embeds_mensaje_id:
                         mensaje_embeds = await canal.fetch_message(self.embeds_mensaje_id[canal.id])
